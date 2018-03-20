@@ -14,6 +14,8 @@
 
 <script type="text/javascript">
 
+    var images = ['rock.png' , 'branch.png', 'bird.png' , 'ledge.png' , 'log.png' ,'branch2.png' , 'mossRock.png' ]
+
     var config = {
         type: Phaser.AUTO,
         width: 576,
@@ -29,7 +31,7 @@
 
     function preload ()
     {
-      //this.load.image(Imagedirectory)
+      this.load.image(Imagedirectory)
     }
 
     function create ()
@@ -38,19 +40,19 @@
 
     function update ()
     {
-      //this.add.Image(dimensionX, DimensionY, background.png);
+      this.add.Image(dimensionX, DimensionY, background.png);
 
-      /*obsticles = this.physics.add.group(64,64, array[i]){
+      obsticles = this.physics.add.group(64,64, array[i]){
         key: 'obsticles'
         repeat: RandomTimesBetween 3 and 8
         setXY: (RandomX,0 stepx:RandomX*64)
 
-        player = this.physics.add.sprite(64, 64, )
+        player = this.physics.add.sprite(64, 64, platerSrite.png)
+
 
         this.physics.add.collider(player, obsticles);
 
     }
-    */
     }
 
 </script>
