@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Making your first Phaser 3 Game - Part 1</title>
+    <title>Abseiling Game</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.1.1/dist/phaser.js"></script>
     <style type="text/css">
         body {
@@ -14,11 +14,10 @@
 
 <script type="text/javascript">
 
-    var obsticleImgArr = ['rock.png' , 'branch.png', 'bird.png' , 'ledge.png' , 'log.png' ,'branch2.png' , 'mossRock.png' ];
+    /*var obsticleImgArr = ['rock.png' , 'branch.png', 'bird.png' , 'ledge.png' , 'log.png' ,'branch2.png' , 'mossRock.png' ];
     var ObsImgArrLength = obsticleImgArr.lenth();
     var randomObsticle = Math.floor(Math.Random() * ObsImgArrLength) + 1;
-    var randomX = Math.floor(Math.Random() * 8) + 1 *
-
+    var randomX = Math.floor(Math.Random() * 8) + 1 ;*/
     var config = {
         type: Phaser.AUTO,
         width: 576,
@@ -30,52 +29,35 @@
         }
     };
 
-    var player
-    var obsticles
+    var player;
+    var obstacles;
 
 
     var game = new Phaser.Game(config);
 
     function preload ()
     {
-      this.load.image(Imagedirectory)
+      this.load.image('background', 'Background.png');
+      this.load.image('cadet' , 'Cadet_1.png');
     }
 
     function create ()
     {
-      this.add.Image(400, 300 , background.png); //adds background
-
-      obsticles = this.physics.add.group(64,64, array[i]){ //adds group for obsticles
-        key: 'obsticles'
-        repeat: RandomTimesBetween 3 and 8
-        setXY: (RandomX,0 stepx:RandomX*64)
-      }
-        player = this.physics.add.sprite(64, 64, platerSrite.png) ;
-        player.setCollideWorldBounds(true);
+      this.add.image(288,288 , 'background'); //adds background
+      player = this.add.image(288 , 288 , 'cadet');
 
 
-        this.physics.add.collider(player, obsticles);
-
+      player.setCollideWorldBounds(true);
         //make animations
+
+      cursors = this.input.keyboard.createCursorKeys();
     }
 
     function update ()
     {
-      if (gameOver)
-      {
-        return;
-      }
       if (cursors.left.isDown)
       {
-        plater.setVelocityX(-100);
-      }
-      else if (cursors.right.isDown)
-      {
-          player.setVelocityX(100);
-      }
-      else
-      {
-          player.setVelocityX(0);
+        player.setVelocityX(-64);
       }
     }
 
