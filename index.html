@@ -14,10 +14,6 @@
 
 <script type="text/javascript">
 
-    /*var obsticleImgArr = ['rock.png' , 'branch.png', 'bird.png' , 'ledge.png' , 'log.png' ,'branch2.png' , 'mossRock.png' ];
-    var ObsImgArrLength = obsticleImgArr.lenth();
-    var randomObsticle = Math.floor(Math.Random() * ObsImgArrLength) + 1;
-    var randomX = Math.floor(Math.Random() * 8) + 1 ;*/
     var config = {
         type: Phaser.AUTO,
         width: 576,
@@ -58,6 +54,10 @@
       if (cursors.left.isDown)
       {
         player.setVelocityX(-64);
+      }
+      else
+      {
+          player.setVelocity(0); 
       }
     }
 
