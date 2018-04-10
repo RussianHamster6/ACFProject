@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Abseiling Game</title>
-    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -14,51 +14,57 @@
 
 <script type="text/javascript">
 
-    var config = {
-        type: Phaser.AUTO,
-        width: 576,
-        height: 576,
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-    };
-
     var player;
     var obstacles;
 
 
-    var game = new Phaser.Game(config);
+    var game = new Phaser.Game(576, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     function preload ()
     {
       this.load.image('background', 'Background.png');
       this.load.image('cadet' , 'Cadet_1.png');
+      this.load.image('rock' , 'Rock.png');
     }
 
     function create ()
     {
-      this.add.image(288,288 , 'background'); //adds background
-      player = this.add.image(288 , 288 , 'cadet');
+      //Starts the physics system by calling the game.physics.startSystem function and parsing it the ARCADE Physics value
+      game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
-      player.setCollideWorldBounds(true);
-        //make animations
 
-      cursors = this.input.keyboard.createCursorKeys();
+      this.add.image(0,0 , 'background');
+      player = this.add.sprite(288,288, 'cadet');
+
+      game.physics.arcade.enable(player);
+      /*obstacles = game.add.group();
+      obstacles.add('rock');*/
+
+      player.collideWorldBounds = true;
+
+      player.body.velocity.x = 0;
+
+      cursors = game.input.keyboard.createCursorKeys();
     }
 
     function update ()
     {
+      //var collide = game.physics.arcade.collide(player , obsticles);
+
       if (cursors.left.isDown)
       {
-        player.setVelocityX(-64);
+         player.body.velocity.x = -64;
+      }
+      else if (cursors.right.isDown)
+      {
+        player.body.velocity.x = 64;
       }
       else
       {
-          player.setVelocity(0);
+        player.body.velocity.x = 0;
       }
+
     }
 
 </script>
