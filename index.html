@@ -16,9 +16,31 @@
 
     var player;
     var obstacles;
-
+    var iterations;
+    var randX;
 
     var game = new Phaser.Game(576, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+    function randomObstacle()
+    {
+      iterations = Math.floor((Math.random()* 13) + 1);
+
+      for (i = 0; i < iterations; i++)
+      {
+        randX = (Math.floor(Math.random()*576) + 1)
+        var newObs = game.add.sprite(randX, 576, 'rock');
+        game.physics.arcade.enable(newObs);
+        newObs.body.velocity.y = Math.floor(Math.random()*-100) + -120;
+        newObs
+        console.log(i);
+      }
+
+      /*while (iterations != 0)
+        {
+          randX = Math.floor()(Math.random()*576 + 1);
+          obstacles = this.add.sprite('rock', randX, 0);
+        }*/
+    }
 
     function preload ()
     {
@@ -32,10 +54,10 @@
       //Starts the physics system by calling the game.physics.startSystem function and parsing it the ARCADE Physics value
       game.physics.startSystem(Phaser.Physics.ARCADE);
 
-
+      obstacles = game.add.group();
 
       this.add.image(0,0 , 'background');
-      player = this.add.sprite(288,288, 'cadet');
+      player = this.add.sprite(288,100, 'cadet');
 
       game.physics.arcade.enable(player);
       /*obstacles = game.add.group();
@@ -44,6 +66,13 @@
       player.collideWorldBounds = true;
 
       player.body.velocity.x = 0;
+
+
+      randomObstacle();
+      game.physics.arcade.enable(obstacles);
+      obstacles.collideWorldBounds = true;
+
+      //obstacles.setALL('body.velocity', 120/*Math.floor((Math.random()* 1000) + 120)*/);
 
       cursors = game.input.keyboard.createCursorKeys();
     }
@@ -54,11 +83,11 @@
 
       if (cursors.left.isDown)
       {
-         player.body.velocity.x = -64;
+         player.body.velocity.x = -128;
       }
       else if (cursors.right.isDown)
       {
-        player.body.velocity.x = 64;
+        player.body.velocity.x = 128;
       }
       else
       {
