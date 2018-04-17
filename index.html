@@ -16,36 +16,39 @@
 
     var player;
     var obstacles;
+    var newObs;
     var iterations;
     var randX;
+    var gameOver = false;
+    var score = 0;
 
     var game = new Phaser.Game(576, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     function randomObstacle()
     {
       iterations = Math.floor((Math.random()* 13) + 1);
-
+      console.log(iterations);
       for (i = 0; i < iterations; i++)
       {
         randX = (Math.floor(Math.random()*576) + 1)
-        var newObs = game.add.sprite(randX, 576, 'rock');
+        newObs = game.add.sprite(randX, 576, 'rock');
         game.physics.arcade.enable(newObs);
         newObs.body.velocity.y = Math.floor(Math.random()*-100) + -120;
-        newObs
-        console.log(i);
+
       }
 
-      /*while (iterations != 0)
-        {
-          randX = Math.floor()(Math.random()*576 + 1);
-          obstacles = this.add.sprite('rock', randX, 0);
-        }*/
+
+    }
+
+    function sleep(ms)
+    {
+      return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     function preload ()
     {
       this.load.image('background', 'Background.png');
-      this.load.image('cadet' , 'Cadet_1.png');
+      this.load.image('cadet' , 'Cadet 1.png');
       this.load.image('rock' , 'Rock.png');
     }
 
@@ -63,27 +66,28 @@
       /*obstacles = game.add.group();
       obstacles.add('rock');*/
 
-      player.collideWorldBounds = true;
+      player.body.collideWorldBounds = true;
 
       player.body.velocity.x = 0;
 
-
-      randomObstacle();
       game.physics.arcade.enable(obstacles);
       obstacles.collideWorldBounds = true;
 
       //obstacles.setALL('body.velocity', 120/*Math.floor((Math.random()* 1000) + 120)*/);
 
       cursors = game.input.keyboard.createCursorKeys();
+
+      randomObstacle();
     }
 
     function update ()
     {
       //var collide = game.physics.arcade.collide(player , obsticles);
 
+
       if (cursors.left.isDown)
       {
-         player.body.velocity.x = -128;
+        player.body.velocity.x = -128;
       }
       else if (cursors.right.isDown)
       {
@@ -92,6 +96,14 @@
       else
       {
         player.body.velocity.x = 0;
+      }
+      for (var xi = 0; xi < 577; xi++ )
+      {
+        if (newObs.getBounds().contains(xi, 0))
+        {
+          score = score + 1
+          randomObstacle();
+        }
       }
 
     }
