@@ -1,4 +1,3 @@
-
     var player;
     var obstacles;
     var newObs;
@@ -9,9 +8,12 @@
     var background;
     var randObs;
 
-    var arrObjects = ['rock','mossRock','branch1','branch2','ledge','nest','log']
+var arrObjects = ['rock', 'mossRock', 'branch1', 'branch2', 'ledge', 'nest', 'log']
 
-    var game = new Phaser.Game(576, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var Canvas_Height = window.innerHeight * window.devicePixelRatio;
+var Canvas_Width = window.innerWidth * window.devicePixelRatio;
+
+var game = new Phaser.Game(Canvas_Height, Canvas_Width, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     function randomObstacle()
     {

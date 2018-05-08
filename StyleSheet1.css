@@ -1,0 +1,39 @@
+﻿html, body{
+    height: 100%;
+    margin: 0;
+}
+#Navbar{
+    padding: 10px;
+    margin: 0;
+    background-color: #03122c;
+}
+    #Navbar a{
+        text-decoration: none;
+        color: white;
+    }
+    #Navbar a:hover{
+        color: blue;
+    }
+#Text{
+    border: 1px solid;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100%;
+}
+    #Down{
+        margin-top: 15%;
+    }
+#Game{
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+hr{
+    width: 80%;
+}
+footer p{
+    padding: 10px;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
